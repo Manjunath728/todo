@@ -17,16 +17,9 @@ app.use(cors({
 app.use(express.json());
 
 // Connect to MongoDB
-const mongooseOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  user: process.env.MONGODB_USERNAME, 
-  pass: process.env.MONGODB_PASSWORD, 
-  dbName: 'tododb', 
-};
+mongoose.connect(`mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URI}:27017/tododb`);
 
-mongoose.connect("mongodb://"+process.env.MONGODB_URI+":27017", mongooseOptions);
-console.log(process.env.MONGODB_URI);
+
 const connection = mongoose.connection;
 
 connection.once('open', () => {
@@ -78,5 +71,4 @@ app.delete('/delete/:id', async (req, res) => {
   });
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  console.log(process.env.SAMPLE);
 });
