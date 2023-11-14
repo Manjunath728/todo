@@ -24,6 +24,7 @@ const connection = mongoose.connection;
 
 connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
+  console.log("working auto build");
 });
 
 // Todo model
