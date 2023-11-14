@@ -32,8 +32,6 @@ spec:
             configMapKeyRef:
               name: mongo-config
               key: database-url
-        - name : SAMPLE
-          value: backend-service
 ---
 apiVersion: v1
 kind: Service

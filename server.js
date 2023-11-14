@@ -17,8 +17,15 @@ app.use(cors({
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(`mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URI}:27017/tododb`);
+const mongooseOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  user: process.env.MONGODB_USERNAME, 
+  pass: process.env.MONGODB_PASSWORD, 
+  dbName: 'tododb', 
+};
 
+mongoose.connect("mongodb://"+process.env.MONGODB_URI+":27017", mongooseOptions);
 
 const connection = mongoose.connection;
 
