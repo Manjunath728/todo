@@ -32,6 +32,8 @@ spec:
             configMapKeyRef:
               name: mongo-config
               key: database-url
+        - name : SAMPLE
+          value: backend-service
 ---
 apiVersion: v1
 kind: Service
@@ -44,4 +46,3 @@ spec:
   ports:
   - port: 5000
     targetPort: 5000
-    nodePort: 30001

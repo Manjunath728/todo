@@ -5,6 +5,7 @@ metadata:
   labels:
     app: mongodb
 spec:
+  
   replicas: 1
   selector:
     matchLabels:
@@ -14,6 +15,10 @@ spec:
       labels:
         app: mongodb
     spec:
+      volumes:
+      - name: mongo-data
+        persistentVolumeClaim:
+          claimName: mongo-pvc
       containers:
       - name: mongodb
         image: mongo
@@ -30,6 +35,7 @@ spec:
             secretKeyRef:
               name: mongo-secret
               key: mongo-root-password
+        
         
 ---
 apiVersion: v1

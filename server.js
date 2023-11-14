@@ -25,8 +25,8 @@ const mongooseOptions = {
   dbName: 'tododb', 
 };
 
-mongoose.connect(process.env.MONGODB_URI, mongooseOptions);
-
+mongoose.connect("mongodb://"+process.env.MONGODB_URI+":27017", mongooseOptions);
+console.log(process.env.MONGODB_URI);
 const connection = mongoose.connection;
 
 connection.once('open', () => {
@@ -78,4 +78,5 @@ app.delete('/delete/:id', async (req, res) => {
   });
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  console.log(process.env.SAMPLE);
 });
