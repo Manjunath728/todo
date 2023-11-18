@@ -30,7 +30,7 @@ mongoose.connect("mongodb://"+process.env.MONGODB_URI+":27017", mongooseOptions)
 const connection = mongoose.connection;
 
 connection.once('open', () => {
-  console.log('MongoDB database connection established successfully');
+  console.log('MongoDB database connection established successfully again');
   console.log("working auto build");
 });
 
