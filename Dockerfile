@@ -1,5 +1,6 @@
+
 FROM node:18.17.1-alpine
-RUN apt-get update 
+ 
 # Install Dependencies
 COPY package*.json ./
 
