@@ -16,23 +16,23 @@ app.use(cors({
   }));
 app.use(express.json());
 
-const mongoURI = `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URI}:27017/tododb`
+const mongoURI = `mongodb://${process.env.MONGODB_URI}:27017/tododb`
 
-const options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 30000, 
-};
-
-mongoose.connect(mongoURI, options)
+  const mongooseOptions = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    user: process.env.MONGODB_USERNAME,
+    pass: process.env.MONGODB_PASSWORD
+  };
+  
+  mongoose.connect(mongoURI, mongooseOptions)
   .then(() => {
     console.log('Connected to MongoDB');
   })
   .catch((error) => {
     console.error('Error connecting to MongoDB:', error);
-  });
-
-
+  });  
+  
 const connection = mongoose.connection;
 
 connection.once('open', () => {
