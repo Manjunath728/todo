@@ -14,7 +14,7 @@ connection.on('error', (error) => {
   });
 connection.once('open', () => {
     console.log('MongoDB database connection established successfully');
-    
+    console.log(process.env.MONGODB_USERNAME,process.env.MONGODB_PASSWORD);
   });
 
 
