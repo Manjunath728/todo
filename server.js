@@ -4,19 +4,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
-mongoose.connect(`mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URI}:27017/tododb`);
-
-
-const connection = mongoose.connection;
-connection.on('error', (error) => {
-    console.error('MongoDB connection error:', error);
-    console.log(process.env.MONGODB_USERNAME,process.env.MONGODB_PASSWORD);
-  });
-connection.once('open', () => {
-    console.log('MongoDB database connection established successfully');
-    console.log(process.env.MONGODB_USERNAME,process.env.MONGODB_PASSWORD);
-  });
-
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -29,6 +16,23 @@ app.use(cors({
   }));
 app.use(express.json());
 
+// Connect to MongoDB
+const mongooseOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  user: process.env.MONGODB_USERNAME, 
+  pass: process.env.MONGODB_PASSWORD, 
+  dbName: 'tododb', 
+};
+
+mongoose.connect("mongodb://"+process.env.MONGODB_URI+":27017", mongooseOptions);
+
+const connection = mongoose.connection;
+
+connection.once('open', () => {
+  console.log('MongoDB database connection established successfully again');
+  console.log("working auto build");
+});
 
 // Todo model
 const todoSchema = new mongoose.Schema({
