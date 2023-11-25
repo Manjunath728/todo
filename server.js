@@ -10,7 +10,7 @@ mongoose.connect(`mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGOD
 const connection = mongoose.connection;
 connection.on('error', (error) => {
     console.error('MongoDB connection error:', error);
-    assert.fail('Failed to connect to MongoDB');
+    console.log(process.env.MONGODB_USERNAME,process.env.MONGODB_PASSWORD);
   });
 connection.once('open', () => {
     console.log('MongoDB database connection established successfully');
