@@ -31,7 +31,7 @@ const connection = mongoose.connection;
 
 connection.once('open', () => {
   console.log('MongoDB database connection established successfully again');
-  console.log("working auto build woow only");
+  console.log("working auto build woow only finally done ");
 });
 
 // Todo model
